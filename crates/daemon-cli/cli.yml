@@ -1,0 +1,24 @@
+name: rss-reader-daemon
+version: "0.1.0"
+author: hasezoey <hasezoey@gmail.com>
+about: This is an service to run 24/7 to fetch an rss-feed until retrieved by an client
+
+settings: 
+  - ArgRequiredElseHelp # show help if no args are given
+  - StrictUtf8 # only allow valid UTF-8
+  - VersionlessSubcommands # disable versions for subcommands
+
+args:
+  # flags
+  - verbose:
+      short: v
+      help: enable full logs on startup
+  # everything else
+  - config:
+      long: config
+      short: c
+      env: RSS_READER_DAEMON_CONFIG
+      help: Set an custom path for the config
+      value_name: CONFIG_PATH
+      takes_value: true
+      default_value: "./config.yml"
