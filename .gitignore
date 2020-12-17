@@ -2,3 +2,5 @@
 /target
 # Config file created by daemon-cli
 config.yml
+/feed
+/log
