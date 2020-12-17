@@ -1,0 +1,65 @@
+name: Rust Tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)
+        required: false
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain: [stable, nightly]
+    steps:
+      - uses: actions/checkout@v2
+        if: github.event.inputs.git-ref == ''
+      - uses: actions/checkout@v2
+        if: github.event.inputs.git-ref != ''
+        with:
+          ref: ${{ github.event.inputs.git-ref }}
+      - name: Install latest nightly
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: ${{ matrix.toolchain }}
+            override: true
+            components: rustfmt, clippy
+      - name: Run syntax check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --workspace
+      - name: Clippy
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --all-features
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --workspace
+      - name: Clean (for coverage safety)
+        uses: actions-rs/cargo@v1
+        with:
+          command: clean
+      - name: Tests
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --workspace --all-features --no-fail-fast
+        env:
+          CARGO_INCREMENTAL: '0'
+          RUSTFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+          RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+      - name: Generate Coverage report
+        uses: actions-rs/grcov@v0.1
+      - name: Send Coverage report to codecov
+        if: matrix.toolchain == 'stable'
+        uses: codecov/codecov-action@v1
