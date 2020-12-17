@@ -1,34 +1,53 @@
-use log::debug;
+use log::{debug, warn};
 use rss_reader_daemon_core::config::Config;
 use serde::{
 	Deserialize,
 	Serialize,
 };
-use std::default::Default;
-use std::error::Error;
+use std::{collections::HashMap, default::Default};
 use std::fs::File;
 use std::path::Path;
 use std::path::PathBuf;
+use anyhow::Context;
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct BinConfig {
+	#[serde(default = "BinConfig::latest_version")]
+	/// Config version
+	pub version: usize,
+	#[serde(flatten)]
     /// Config to be passed to the lib
-    lib_config: Config,
+	pub lib_config: Config,
+	#[serde(default = "BinConfig::default_logpath")]
     /// Directory to place log files
-    log_path: String,
+    pub log_path: String,
+	#[serde(flatten)]
+	/// serde unkown fields
+	pub extra: HashMap<String, serde_yaml::Value>,
 }
 
 impl Default for BinConfig {
 	fn default() -> Self {
 		return BinConfig {
-			log_path: "./log".to_string(),
+			version: Self::latest_version(),
+			log_path: Self::default_logpath(),
 			lib_config: Config::default(),
+			extra: HashMap::new(),
 		}
 	}
 }
 
 impl BinConfig {
-	pub fn from_cli_matches(cli_matches: &clap::ArgMatches) -> Result<BinConfig, Box<dyn Error>> {
+	pub fn latest_version() -> usize {
+		return 0;
+	}
+
+	pub fn default_logpath() -> String {
+		return "./log".to_string();
+	}
+
+	pub fn from_cli_matches(cli_matches: &clap::ArgMatches) -> anyhow::Result<Self> {
 		let config_path = PathBuf::from(&cli_matches.value_of("config").unwrap());
 		debug!("Config Path is {:?}", &config_path);
 
@@ -36,19 +55,26 @@ impl BinConfig {
 			// is there an better way to do this?
 			true => {
 				debug!("Config File Exists");
-				let config_raw = File::open(&config_path).expect("Opening config path for reading Failed");
-				serde_yaml::from_reader(&config_raw).expect("Couldnt read config")
+				let config_raw = File::open(&config_path).context("Opening config path for reading Failed")?;
+				serde_yaml::from_reader(&config_raw).context("Couldnt read config")?
 			},
 			false => {
 				debug!("Config File does not exist");
 				let config = BinConfig::default();
-				let write = File::create(&config_path).expect("Opening config path for writing Failed");
-				serde_yaml::to_writer(&write, &config).expect("Writing default config failed");
+				let write = File::create(&config_path).context("Opening config path for writing Failed")?;
+				serde_yaml::to_writer(&write, &config).context("Writing default config failed")?;
 				config
 			},
 		};
 
 		debug!("Config File's Content: {:#?}", &config);
+
+		if config.extra.len() > 0 {
+			for key in config.extra.keys() {
+				warn!("Unkown key in config: \"{}\"", &key);
+			}
+		}
+
 		return Ok(config);
 	}
 }
