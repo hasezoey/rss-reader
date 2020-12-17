@@ -3,6 +3,7 @@ use clap::App;
 // use rss_reader_daemon_core::locks::try_lock;
 use flexi_logger::Logger;
 use anyhow::Context;
+use log::info;
 
 mod config;
 
@@ -14,6 +15,6 @@ fn main() -> anyhow::Result<()> {
 
 	// try_lock(&config.lib_config)?;
 
-	println!("Hello from Server");
+	info!("daemon end");
 	return Ok(());
 }
