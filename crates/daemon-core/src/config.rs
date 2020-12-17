@@ -2,15 +2,23 @@ use serde::{Serialize, Deserialize};
 use std::default::Default;
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct Config {
+	#[serde(default = "Config::default_feed_path")]
     /// Directory to store all feed related files in
-    feed_path: String,
+    pub feed_path: String,
 }
 
 impl Default for Config {
 	fn default() -> Self {
 		Config {
-			feed_path: "./feed".to_string(),
+			feed_path: Self::default_feed_path(),
 		}
+	}
+}
+
+impl Config {
+	pub fn default_feed_path() -> String {
+		return "./feed".to_string();
 	}
 }
