@@ -5,6 +5,7 @@ pub mod error;
 mod tests {
     #[test]
     fn it_works() {
-        assert_eq!(2 + 2, 4);
+		let v = 4;
+        assert_eq!(v, 4);
     }
 }
