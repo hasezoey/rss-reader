@@ -12,6 +12,32 @@ on:
         required: false
 
 jobs:
+  # Check rustfmt
+  rustfmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt
+      - run: cargo fmt --all -- --check
+
+  # Check clippy.  This doesn't check ARM though.
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: clippy
+      - run: cargo clippy --all-targets --workspace -- -D warnings
+
   tests:
     runs-on: ubuntu-latest
     strategy:
@@ -30,7 +56,6 @@ jobs:
             profile: minimal
             toolchain: ${{ matrix.toolchain }}
             override: true
-            components: rustfmt, clippy
       - name: Run syntax check
         uses: actions-rs/cargo@v1
         with:
