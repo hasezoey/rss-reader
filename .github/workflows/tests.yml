@@ -27,6 +27,7 @@ jobs:
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
         with:
+            profile: minimal
             toolchain: ${{ matrix.toolchain }}
             override: true
             components: rustfmt, clippy
@@ -40,11 +41,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features
-      - name: Build
+      - name: Build Release
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --workspace
+          args: --workspace --release
       - name: Clean (for coverage safety)
         uses: actions-rs/cargo@v1
         with:
@@ -54,12 +55,12 @@ jobs:
         with:
           command: test
           args: --workspace --all-features --no-fail-fast
-        env:
-          CARGO_INCREMENTAL: '0'
-          RUSTFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
-          RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
-      - name: Generate Coverage report
-        uses: actions-rs/grcov@v0.1
-      - name: Send Coverage report to codecov
-        if: matrix.toolchain == 'stable'
-        uses: codecov/codecov-action@v1
+      #   env:
+      #     CARGO_INCREMENTAL: '0'
+      #     RUSTFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+      #     RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+      # - name: Generate Coverage report
+      #   uses: actions-rs/grcov@v0.1
+      # - name: Send Coverage report to codecov
+      #   if: matrix.toolchain == 'nightly'
+      #   uses: codecov/codecov-action@v1
