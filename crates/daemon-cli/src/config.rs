@@ -1,40 +1,46 @@
-use log::{debug, warn};
+use anyhow::Context;
+use log::{
+	debug,
+	warn,
+};
 use rss_reader_daemon_core::config::Config;
 use serde::{
 	Deserialize,
 	Serialize,
 };
-use std::{collections::HashMap, default::Default};
 use std::fs::File;
 use std::path::Path;
 use std::path::PathBuf;
-use anyhow::Context;
+use std::{
+	collections::HashMap,
+	default::Default,
+};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct BinConfig {
 	#[serde(default = "BinConfig::latest_version")]
 	/// Config version
-	pub version: usize,
+	pub version:    usize,
 	#[serde(flatten)]
-    /// Config to be passed to the lib
+	/// Config to be passed to the lib
 	pub lib_config: Config,
 	#[serde(default = "BinConfig::default_logpath")]
-    /// Directory to place log files
-    pub log_path: String,
+	/// Directory to place log files
+	pub log_path:   String,
 	#[serde(flatten)]
 	/// serde unkown fields
-	pub extra: HashMap<String, serde_yaml::Value>,
+	pub extra:      HashMap<String, serde_yaml::Value>,
 }
 
 impl Default for BinConfig {
 	fn default() -> Self {
 		return Self {
-			version: Self::latest_version(),
-			log_path: Self::default_logpath(),
+			version:    Self::latest_version(),
+			log_path:   Self::default_logpath(),
 			lib_config: Config::default(),
-			extra: HashMap::new(),
-		}
+			extra:      HashMap::new(),
+		};
 	}
 }
 

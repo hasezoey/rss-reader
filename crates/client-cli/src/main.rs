@@ -11,6 +11,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 	debug!("Hello from Client (Debug)");
 	println!("Hello from Client");
-	
+
 	return Ok(());
 }
