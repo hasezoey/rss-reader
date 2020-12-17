@@ -20,3 +20,11 @@ I started creating this project because i couldnt find any rss reader that was c
 - make client-cli interactive (layout like Lifera, but in terminal form)
 - fetch feeds in seperate threads
 - create log file in all locations that are modifyable
+
+## TODO
+
+- setup clippy config, if there should be ever one
+- setup cargo-husky
+  - setup run clippy
+  - setup run fmt
+  - setup run check
