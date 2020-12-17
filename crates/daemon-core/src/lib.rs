@@ -1,4 +1,6 @@
 pub mod config;
+// pub mod locks;
+pub mod error;
 
 #[cfg(test)]
 mod tests {
