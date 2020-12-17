@@ -1,5 +1,7 @@
 # Rust RSS-Feed-Reader
 
+Note: this project is currently only aimed at *nix systems (specifically linux)
+
 ## Motivation
 
 I started creating this project because i couldnt find any rss reader that was capable of running as a service (on an 24/7 server) and be retrieved on an client, like transmission daemon & remote and i was an user of Lifera
