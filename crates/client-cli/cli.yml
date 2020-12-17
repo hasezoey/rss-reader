@@ -19,6 +19,5 @@ args:
       short: c
       env: RSS_READER_CLIENT_CLI_CONFIG
       help: Set an custom path for the config
-      value_name: CONFIG_PATH
       takes_value: true
       default_value: "~/.config/rss-reader-client-cli.yml"
