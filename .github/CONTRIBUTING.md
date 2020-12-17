@@ -43,7 +43,7 @@ Must be one of the following:
 * **test**: Adding missing or correcting existing tests
 * **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
 * **revert**: Revert an commit
-* **dependencies**: Update field `dependencies` (/ `devDependencies`)
+* **deps**: Update/Add/Remove Dependencies from `Cargo.toml` (/`Cargo.lock`)
 * **release**: An Release Commit
 
 look into [releaserc](../.releaserc.js) for corresponding versions
