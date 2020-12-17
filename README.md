@@ -11,3 +11,9 @@ I started creating this project because i couldnt find any rss reader that was c
   - [ ] cli-client
   - [ ] graphical client (gtk?)
 - [ ] both together
+
+## Design thoughts
+
+- make client-cli interactive (layout like Lifera, but in terminal form)
+- fetch feeds in seperate threads
+- create log file in all locations that are modifyable
