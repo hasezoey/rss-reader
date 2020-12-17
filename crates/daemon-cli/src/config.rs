@@ -51,20 +51,16 @@ impl BinConfig {
 		let config_path = PathBuf::from(&cli_matches.value_of("config").unwrap());
 		debug!("Config Path is {:?}", &config_path);
 
-		let config: BinConfig = match Path::new(&config_path).exists() {
-			// is there an better way to do this?
-			true => {
-				debug!("Config File Exists");
-				let config_raw = File::open(&config_path).context("Opening config path for reading Failed")?;
-				serde_yaml::from_reader(&config_raw).context("Couldnt read config")?
-			},
-			false => {
-				debug!("Config File does not exist");
-				let config = BinConfig::default();
-				let write = File::create(&config_path).context("Opening config path for writing Failed")?;
-				serde_yaml::to_writer(&write, &config).context("Writing default config failed")?;
-				config
-			},
+		let config: BinConfig = if Path::new(&config_path).exists() {
+			debug!("Config File Exists");
+			let config_raw = File::open(&config_path).context("Opening config path for reading Failed")?;
+			serde_yaml::from_reader(&config_raw).context("Couldnt read config")?
+		} else {
+			debug!("Config File does not exist");
+			let config = BinConfig::default();
+			let write = File::create(&config_path).context("Opening config path for writing Failed")?;
+			serde_yaml::to_writer(&write, &config).context("Writing default config failed")?;
+			config
 		};
 
 		debug!("Config File's Content: {:#?}", &config);
