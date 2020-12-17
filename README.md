@@ -1,6 +1,7 @@
 # Rust RSS-Feed-Reader
 
 Note: this project is currently only aimed at *nix systems (specifically linux)
+Note: pidfile and anti-duplication will be handled by the "parent process" (like systemd or an docker-container)
 
 ## Motivation
 
