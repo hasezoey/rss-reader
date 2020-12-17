@@ -11,7 +11,7 @@ pub struct Config {
 
 impl Default for Config {
 	fn default() -> Self {
-		Config {
+		return Config {
 			feed_path: Self::default_feed_path(),
 		}
 	}
