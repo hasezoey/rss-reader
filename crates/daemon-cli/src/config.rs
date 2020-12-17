@@ -29,7 +29,7 @@ pub struct BinConfig {
 
 impl Default for BinConfig {
 	fn default() -> Self {
-		return BinConfig {
+		return Self {
 			version: Self::latest_version(),
 			log_path: Self::default_logpath(),
 			lib_config: Config::default(),
