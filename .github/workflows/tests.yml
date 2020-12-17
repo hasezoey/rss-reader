@@ -62,11 +62,6 @@ jobs:
         with:
           command: check
           args: --workspace
-      - name: Build Release
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --workspace --release
       - name: Clean (for coverage safety)
         uses: actions-rs/cargo@v1
         with:
