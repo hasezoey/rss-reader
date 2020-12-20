@@ -71,7 +71,7 @@ impl BinConfig {
 
 		debug!("Config File's Content: {:#?}", &config);
 
-		if config.extra.is_empty() {
+		if !config.extra.is_empty() {
 			for key in config.extra.keys() {
 				warn!("Unkown key in config: \"{}\"", &key);
 			}
