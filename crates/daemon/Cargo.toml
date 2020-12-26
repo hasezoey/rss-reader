@@ -7,13 +7,13 @@ license = "MIT"
 repository = "https://github.com/hasezoey/rss-reader"
 
 [dependencies]
-log = "0.4.8"
-serde = { version = "1.0", features = ["derive"] }
-serde_yaml = "0.8"
+log = "0.4.11"
+serde = { version = "1.0.118", features = ["derive"] }
+serde_yaml = "0.8.14"
 anyhow = "1.0.35"
 thiserror = "1.0.22"
 flexi_logger = "0.16.2"
-clap = {version = "2.33.0", features = ["yaml", "wrap_help"]}
+clap = { version = "2.33.3", features = ["yaml", "wrap_help"] }
 
 [lib]
 path = "src/lib/mod.rs"
