@@ -4,7 +4,8 @@ use clap::App;
 use flexi_logger::Logger;
 use log::info;
 
-mod config;
+mod lib;
+use lib::*;
 
 fn main() -> anyhow::Result<()> {
 	Logger::with_env_or_str("debug")

@@ -1,20 +1,33 @@
 use anyhow::Context;
-use log::{
-	debug,
-	warn,
-};
-use rss_reader_daemon_core::config::Config;
+use log::{debug, warn};
 use serde::{
 	Deserialize,
 	Serialize,
 };
-use std::fs::File;
-use std::path::Path;
-use std::path::PathBuf;
-use std::{
-	collections::HashMap,
-	default::Default,
-};
+use std::{collections::HashMap, default::Default, fs::File, path::{Path, PathBuf}};
+use serde_yaml;
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct Config {
+	#[serde(default = "Config::default_feed_path")]
+	/// Directory to store all feed related files in
+	pub feed_path: String,
+}
+
+impl Default for Config {
+	fn default() -> Self {
+		return Config {
+			feed_path: Self::default_feed_path(),
+		};
+	}
+}
+
+impl Config {
+	pub fn default_feed_path() -> String {
+		return "./feed".to_string();
+	}
+}
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]

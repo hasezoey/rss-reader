@@ -1,5 +1,5 @@
 [package]
-name = "rss_reader_daemon_core"
+name = "rss-reader-daemon"
 version = "0.1.0"
 authors = ["hasezoey <hasezoey@gmail.com>"]
 edition = "2018"
@@ -9,5 +9,15 @@ repository = "https://github.com/hasezoey/rss-reader"
 [dependencies]
 log = "0.4.8"
 serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.8"
 anyhow = "1.0.35"
 thiserror = "1.0.22"
+flexi_logger = "0.16.2"
+clap = {version = "2.33.0", features = ["yaml", "wrap_help"]}
+
+[lib]
+path = "src/lib/mod.rs"
+
+[[bin]]
+name = "rss-reader-daemon"
+path = "src/main.rs"

@@ -1,5 +1,5 @@
 [package]
-name = "rss_reader_client_cli"
+name = "rss-reader-client-cli"
 version = "0.1.0"
 authors = ["hasezoey <hasezoey@gmail.com>"]
 edition = "2018"

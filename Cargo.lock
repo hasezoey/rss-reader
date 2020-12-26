@@ -209,7 +209,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3b181ba2dcf07aaccad5448e8ead58db5b742cf85dfe035e2227f137a539a189"
 
 [[package]]
-name = "rss_reader_client_cli"
+name = "rss-reader-client-cli"
 version = "0.1.0"
 dependencies = [
  "clap",
@@ -218,26 +218,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "rss_reader_daemon_cli"
+name = "rss-reader-daemon"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "clap",
  "flexi_logger",
  "log",
- "rss_reader_daemon_core",
  "serde",
  "serde_yaml",
- "thiserror",
-]
-
-[[package]]
-name = "rss_reader_daemon_core"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "log",
- "serde",
  "thiserror",
 ]
 

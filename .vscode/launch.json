@@ -7,15 +7,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'rss_reader_client_cli'",
+            "name": "Debug executable 'rss-reader-client-cli'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=rss_reader_client_cli",
-                    "--package=rss_reader_client_cli"
+                    "--bin=rss-reader-client-cli",
+                    "--package=rss-reader-client-cli"
                 ],
                 "filter": {
-                    "name": "rss_reader_client_cli",
+                    "name": "rss-reader-client-cli",
                     "kind": "bin"
                 }
             },
@@ -25,16 +25,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'rss_reader_client_cli'",
+            "name": "Debug unit tests in executable 'rss-reader-client-cli'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=rss_reader_client_cli",
-                    "--package=rss_reader_client_cli"
+                    "--bin=rss-reader-client-cli",
+                    "--package=rss-reader-client-cli"
                 ],
                 "filter": {
-                    "name": "rss_reader_client_cli",
+                    "name": "rss-reader-client-cli",
                     "kind": "bin"
                 }
             },
@@ -44,54 +44,54 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'rss_reader_daemon_cli'",
-            "cargo": {
-                "args": [
-                    "build",
-                    "--bin=rss_reader_daemon_cli",
-                    "--package=rss_reader_daemon_cli"
-                ],
-                "filter": {
-                    "name": "rss_reader_daemon_cli",
-                    "kind": "bin"
-                }
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Debug unit tests in executable 'rss_reader_daemon_cli'",
-            "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "--bin=rss_reader_daemon_cli",
-                    "--package=rss_reader_daemon_cli"
-                ],
-                "filter": {
-                    "name": "rss_reader_daemon_cli",
-                    "kind": "bin"
-                }
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Debug unit tests in library 'rss_reader_daemon_core'",
+            "name": "Debug unit tests in library 'rss-reader-daemon'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
                     "--lib",
-                    "--package=rss_reader_daemon_core"
+                    "--package=rss-reader-daemon"
                 ],
                 "filter": {
-                    "name": "rss_reader_daemon_core",
+                    "name": "rss-reader-daemon",
                     "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'rss-reader-daemon'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=rss-reader-daemon",
+                    "--package=rss-reader-daemon"
+                ],
+                "filter": {
+                    "name": "rss-reader-daemon",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'rss-reader-daemon'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=rss-reader-daemon",
+                    "--package=rss-reader-daemon"
+                ],
+                "filter": {
+                    "name": "rss-reader-daemon",
+                    "kind": "bin"
                 }
             },
             "args": [],
