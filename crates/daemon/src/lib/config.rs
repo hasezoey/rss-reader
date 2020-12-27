@@ -4,7 +4,7 @@ use serde::{
 	Deserialize,
 	Serialize,
 };
-use std::{collections::HashMap, default::Default, fs::File, path::{Path, PathBuf}};
+use std::{collections::HashMap, default::Default, fs::File, net::Ipv4Addr, path::{Path, PathBuf}};
 use serde_yaml;
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -19,6 +19,12 @@ pub struct Config {
 	#[serde(default = "Config::default_logpath")]
 	/// Directory to place log files
 	pub log_path:   String,
+	#[serde(default = "Config::default_ip")]
+	/// IP to use for the http server
+	pub ip: Ipv4Addr,
+	#[serde(default = "Config::default_port")]
+	/// Port to use for the http server
+	pub port: u16,
 	#[serde(flatten)]
 	/// serde unkown fields
 	pub extra:      HashMap<String, serde_yaml::Value>,
@@ -30,6 +36,8 @@ impl Default for Config {
 			feed_path: Self::default_feed_path(),
 			version:    Self::latest_version(),
 			log_path:   Self::default_logpath(),
+			ip:Self::default_ip(),
+			port:Self::default_port(),
 			extra:      HashMap::new(),
 		};
 	}
@@ -46,6 +54,14 @@ impl Config {
 
 	pub fn default_logpath() -> String {
 		return "./log".to_string();
+	}
+
+	pub fn default_ip() -> Ipv4Addr {
+		return Ipv4Addr::from([127,0,0,1]);
+	}
+
+	pub fn default_port() -> u16 {
+		return 8080;
 	}
 
 	pub fn from_cli_matches(cli_matches: &clap::ArgMatches) -> anyhow::Result<Self> {
