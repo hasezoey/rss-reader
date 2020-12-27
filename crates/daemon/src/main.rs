@@ -30,7 +30,7 @@ async fn main() -> anyhow::Result<()> {
 		}
 	});
 
-	let routes = warp::any().map(|| "Hello there");
+	let routes = warp::any().map(|| return "Hello there");
 
 	warp::serve(routes).run(SocketAddrV4::new(config.ip, config.port)).await;
 

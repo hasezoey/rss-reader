@@ -7,7 +7,6 @@ use serde::{
 	Deserialize,
 	Serialize,
 };
-use serde_yaml;
 use std::{
 	collections::HashMap,
 	default::Default,
