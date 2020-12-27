@@ -1,11 +1,23 @@
 use anyhow::Context;
-use log::{debug, warn};
+use log::{
+	debug,
+	warn,
+};
 use serde::{
 	Deserialize,
 	Serialize,
 };
-use std::{collections::HashMap, default::Default, fs::File, net::Ipv4Addr, path::{Path, PathBuf}};
 use serde_yaml;
+use std::{
+	collections::HashMap,
+	default::Default,
+	fs::File,
+	net::Ipv4Addr,
+	path::{
+		Path,
+		PathBuf,
+	},
+};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -15,30 +27,30 @@ pub struct Config {
 	pub feed_path: String,
 	#[serde(default = "Config::latest_version")]
 	/// Config version
-	pub version:    usize,
+	pub version:   usize,
 	#[serde(default = "Config::default_logpath")]
 	/// Directory to place log files
-	pub log_path:   String,
+	pub log_path:  String,
 	#[serde(default = "Config::default_ip")]
 	/// IP to use for the http server
-	pub ip: Ipv4Addr,
+	pub ip:        Ipv4Addr,
 	#[serde(default = "Config::default_port")]
 	/// Port to use for the http server
-	pub port: u16,
+	pub port:      u16,
 	#[serde(flatten)]
 	/// serde unkown fields
-	pub extra:      HashMap<String, serde_yaml::Value>,
+	pub extra:     HashMap<String, serde_yaml::Value>,
 }
 
 impl Default for Config {
 	fn default() -> Self {
 		return Config {
 			feed_path: Self::default_feed_path(),
-			version:    Self::latest_version(),
-			log_path:   Self::default_logpath(),
-			ip:Self::default_ip(),
-			port:Self::default_port(),
-			extra:      HashMap::new(),
+			version:   Self::latest_version(),
+			log_path:  Self::default_logpath(),
+			ip:        Self::default_ip(),
+			port:      Self::default_port(),
+			extra:     HashMap::new(),
 		};
 	}
 }
@@ -57,7 +69,7 @@ impl Config {
 	}
 
 	pub fn default_ip() -> Ipv4Addr {
-		return Ipv4Addr::from([127,0,0,1]);
+		return Ipv4Addr::from([127, 0, 0, 1]);
 	}
 
 	pub fn default_port() -> u16 {
@@ -90,7 +102,7 @@ impl Config {
 			debug!("Config File does not exist");
 			config = Config::default();
 			let write = File::create(&config_path).context("Opening config path for writing Failed")?;
-			serde_yaml::to_writer(&write, &config).context("Writing default config failed")?; 
+			serde_yaml::to_writer(&write, &config).context("Writing default config failed")?;
 		};
 
 		debug!("Config File's Content: {:#?}", &config);
