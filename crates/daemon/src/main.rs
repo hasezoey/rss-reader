@@ -13,7 +13,7 @@ fn main() -> anyhow::Result<()> {
 		.context("Logger failed to start")?; // TODO: change this to "error" when ready
 	let yml = load_yaml!("../cli.yml");
 	let cli_matches = App::from_yaml(yml).get_matches();
-	let config = config::BinConfig::from_cli_matches(&cli_matches).context("Creating config from cli/env failed")?;
+	let config = config::Config::from_cli_matches(&cli_matches).context("Creating config from cli/env failed")?;
 
 	info!("daemon end");
 	return Ok(());
