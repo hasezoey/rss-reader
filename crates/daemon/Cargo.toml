@@ -10,8 +10,8 @@ repository = "https://github.com/hasezoey/rss-reader"
 log = "0.4.11"
 serde = { version = "1.0.118", features = ["derive"] }
 serde_yaml = "0.8.14"
-anyhow = "1.0.35"
-thiserror = "1.0.22"
+anyhow = "1.0.36"
+thiserror = "1.0.23"
 flexi_logger = "0.16.2"
 clap = { version = "2.33.3", features = ["yaml", "wrap_help"] }
 tokio = { version = "1.0.1", features = ["full"] }
