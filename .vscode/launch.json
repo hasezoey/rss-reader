@@ -18,7 +18,10 @@
                     "name": "rss-reader-client-cli",
                     "kind": "bin"
                 }
-            },
+			},
+			"env": {
+				"RUST_LOG": "DEBUG"
+			},
             "args": [],
             "cwd": "${workspaceFolder}"
         },
@@ -74,7 +77,10 @@
                     "name": "rss-reader-daemon",
                     "kind": "bin"
                 }
-            },
+			},
+			"env": {
+				"RUST_LOG": "DEBUG"
+			},
             "args": [],
             "cwd": "${workspaceFolder}"
         },
