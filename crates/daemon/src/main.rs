@@ -11,7 +11,6 @@ use log::{
 	info,
 };
 use tokio::time;
-use warp::Filter;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -30,9 +29,7 @@ async fn main() -> anyhow::Result<()> {
 		}
 	});
 
-	let routes = warp::any().map(|| return "Hello there");
-
-	warp::serve(routes).run(SocketAddrV4::new(config.ip, config.port)).await;
+	warp::serve(routes::get_routes(config)).run(SocketAddrV4::new(config.ip, config.port)).await;
 
 	info!("daemon end");
 	return Ok(());
