@@ -1,5 +1,9 @@
-use warp::Filter;
+use warp::{
+	filters::BoxedFilter,
+	Filter,
+	Reply,
+};
 
-pub fn get_routes(&config: crate::config::Config) -> warp::Filter {
-	return warp::any().map(|| return "Hello there");
+pub fn get_routes(_config: &crate::config::Config) -> BoxedFilter<(impl Reply,)> {
+	return warp::any().map(|| return "Hello there").boxed();
 }

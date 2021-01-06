@@ -29,7 +29,9 @@ async fn main() -> anyhow::Result<()> {
 		}
 	});
 
-	warp::serve(routes::get_routes(config)).run(SocketAddrV4::new(config.ip, config.port)).await;
+	warp::serve(routes::get_routes(&config))
+		.run(SocketAddrV4::new(config.ip, config.port))
+		.await;
 
 	info!("daemon end");
 	return Ok(());
