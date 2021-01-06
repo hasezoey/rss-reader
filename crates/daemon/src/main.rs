@@ -24,7 +24,7 @@ async fn main() -> anyhow::Result<()> {
 	tokio::task::spawn(async move {
 		debug!("inside sleep-interval task");
 		loop {
-			time::sleep(time::Duration::from_secs(10)).await;
+			time::sleep(time::Duration::from_secs(60)).await;
 			debug!("sleep-interval");
 		}
 	});
