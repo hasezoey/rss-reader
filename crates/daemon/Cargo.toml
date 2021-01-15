@@ -7,17 +7,17 @@ license = "MIT"
 repository = "https://github.com/hasezoey/rss-reader"
 
 [dependencies]
-log = "0.4.11"
-serde = { version = "1.0.118", features = ["derive"] }
+log = "0.4.13"
+serde = { version = "1.0.119", features = ["derive"] }
 serde_yaml = "0.8.15"
-anyhow = "1.0.37"
+anyhow = "1.0.38"
 thiserror = "1.0.23"
-flexi_logger = "0.16.3"
+flexi_logger = "0.17.1"
 clap = { version = "2.33.3", features = ["yaml", "wrap_help"] }
-tokio = { version = "1.0.1", features = ["full"] }
+tokio = { version = "1.0.2", features = ["full"] }
 # warp = "0.2.5"
 # temporarly using the PR, use normal warp if merged & released
-warp = { git = "https://github.com/aknuds1/warp", branch = "chore/upgrade-tokio" }
+warp = { git = "https://github.com/seanmonstar/warp", branch = "master" }
 
 [lib]
 path = "src/lib/mod.rs"
