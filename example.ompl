@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<opml version="1.0">
+  <head>
+    <title>Liferea Feed List Export</title>
+  </head>
+  <body>
+    <outline title="Code" text="Code" description="Code" type="folder">
+      <outline title="Stackoverflow Typegoose" text="Stackoverflow Typegoose" description="Stackoverflow Typegoose" type="atom" xmlUrl="https://stackoverflow.com/feeds/tag?tagnames=typegoose&amp;sort=newest" htmlUrl="https://stackoverflow.com/questions/tagged/?tagnames=typegoose&amp;sort=newest"/>
+      <outline title="Release notes from mongoose" text="Release notes from mongoose" description="Release notes from mongoose" type="atom" xmlUrl="https://github.com/Automattic/mongoose/releases.atom" htmlUrl="https://github.com/Automattic/mongoose/releases.atom"/>
+      <outline title="TypeScript" text="TypeScript" description="TypeScript" type="rss" xmlUrl="https://devblogs.microsoft.com/typescript/feed/" htmlUrl="https://devblogs.microsoft.com/typescript"/>
+    </outline>
+    <outline title="Anime" text="Anime" description="Anime" type="folder">
+      <outline title="animoon Blog Feed" text="animoon Blog Feed" description="animoon Blog Feed" type="rss" xmlUrl="https://www.animoon-publishing.de/rss/blog" htmlUrl="https://www.animoon-publishing.de/"/>
+      <outline title="Anime News by Crunchyroll!" text="Anime News by Crunchyroll!" description="Anime News by Crunchyroll!" type="rss" xmlUrl="http://feeds.feedburner.com/crunchyroll/animenews" htmlUrl="https://www.crunchyroll.com/news"/>
+      <outline title="News &#x2013; Anime2You" text="News &#x2013; Anime2You" description="News &#x2013; Anime2You" type="rss" xmlUrl="https://www.anime2you.de/news/feed/" htmlUrl="https://www.anime2you.de"/>
+      <outline title="Otaku Calendar - Recently Added US Events" text="Otaku Calendar - Recently Added US Events" description="Otaku Calendar - Recently Added US Events" type="rss" xmlUrl="https://otakucalendar.com/rss/rss-us.xml" htmlUrl="http://otakucalendar.com/rss/rss-us.xml"/>
+    </outline>
+  </body>
+</opml>
