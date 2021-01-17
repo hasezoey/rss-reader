@@ -24,7 +24,3 @@ I started creating this project because i couldnt find any rss reader that was c
 ## TODO
 
 - setup clippy config, if there should be ever one
-- setup cargo-husky
-  - setup run clippy
-  - setup run fmt
-  - setup run check
