@@ -1,0 +1,7 @@
+# Format code before an commit
+cargo +nightly fmt --all
+# Format clippy issues if possible, otherwise error
+# "--allow-*" is there to allow any git setup
+./clippy.sh --fix --allow-dirty --allow-staged
+# Check if the Code is compileable
+cargo +nightly check --workspace
