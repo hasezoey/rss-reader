@@ -89,7 +89,7 @@ impl Config {
 		return Ok(config);
 	}
 
-	fn read_or_create_config(config_path: &PathBuf) -> anyhow::Result<Self> {
+	fn read_or_create_config(config_path: &Path) -> anyhow::Result<Self> {
 		debug!("Config Path is {:?}", &config_path);
 
 		let config: Self;
