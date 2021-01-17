@@ -25,3 +25,6 @@ path = "src/lib/mod.rs"
 [[bin]]
 name = "rss-reader-daemon"
 path = "src/main.rs"
+
+[dev-dependencies]
+cargo-husky = { version = "1", default-features = false, features = ["user-hooks"] }
