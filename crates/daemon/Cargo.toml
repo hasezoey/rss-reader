@@ -15,9 +15,9 @@ thiserror = "1.0.23"
 flexi_logger = "0.17.1"
 clap = { version = "2.33.3", features = ["yaml", "wrap_help"] }
 tokio = { version = "1.0.2", features = ["full"] }
-# warp = "0.2.5"
+warp = "0.3.0"
 # temporarly using the PR, use normal warp if merged & released
-warp = { git = "https://github.com/seanmonstar/warp", branch = "master" }
+#warp = { git = "https://github.com/seanmonstar/warp", branch = "master" }
 
 [lib]
 path = "src/lib/mod.rs"
