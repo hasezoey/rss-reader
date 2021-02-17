@@ -9,4 +9,4 @@ repository = "https://github.com/hasezoey/rss-reader"
 [dependencies]
 clap = { version = "2.33.3", features = ["yaml", "wrap_help"] }
 flexi_logger = "0.17.1"
-log = "0.4.13"
+log = "0.4.14"
