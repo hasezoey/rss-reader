@@ -12,7 +12,7 @@ serde = { version = "1.0.123", features = ["derive"] }
 serde_yaml = "0.8.16"
 anyhow = "1.0.38"
 thiserror = "1.0.23"
-flexi_logger = { version = "0.17.1", features = ["compress"] }
+flexi_logger = { version = "0.18.0", features = ["compress"] }
 clap = { version = "2.33.3", features = ["yaml", "wrap_help"] }
 tokio = { version = "1.1.1", features = ["full"] }
 warp = "0.3.0"
